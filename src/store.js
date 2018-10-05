@@ -4,6 +4,7 @@ const Todo = types
   .model({
     name: '',
     done: false,
+    id: types.number,
   })
   .actions((self) => ({
     setName: (newName) => { self.name = newName },
@@ -11,7 +12,7 @@ const Todo = types
   }));
 
 const Store = types
-  .model({
+  .model('TodoStore', {
     todos: types.array(Todo),
   })
   .views((self) => ({
@@ -23,10 +24,18 @@ const Store = types
     },
     get todoCount() {
       return self.todos.length;
-    }
+    },
+    get nextId() {
+      const ids = self.todos.map(todo => todo.id);
+      const findMaxId = (current, max) => current >= max ? current + 1 : max;
+      return ids.reduce(findMaxId, 0);
+    },
   }))
   .actions((self) => ({
-    addTodo: (name) => self.todos.push(Todo.create({ name })),
-}));
+    addTodo: (name) => {
+      const id = self.nextId;
+      self.todos.push(Todo.create({ name, id }))
+    },
+  }));
 
 export default Store;
