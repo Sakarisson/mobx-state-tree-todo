@@ -8,7 +8,9 @@
     "mobx-state-tree": "^3.5.0",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
-    "react-scripts": "2.0.4"
+    "react-scripts": "2.0.4",
+    "todomvc-app-css": "^2.1.2",
+    "todomvc-common": "^1.0.5"
   },
   "scripts": {
     "start": "react-scripts start",
