@@ -36,6 +36,13 @@ const Store = types
       const id = self.nextId;
       self.todos.push(Todo.create({ name, id }))
     },
+    removeTodo: (id) => {
+      const index = self.todos.findIndex(todo => todo.id === id);
+      if (index === -1) {
+        return;
+      }
+      self.todos.splice(index, 1);
+    },
   }));
 
 export default Store;

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { compose } from 'recompose';
 import { observer } from 'mobx-react';
 
-const ListItem = ({ item }) => {
+const ListItem = ({ item, destroy }) => {
   const { name, done, toggle } = item;
   const completedClass = done ? 'completed' : null; 
   return (
@@ -17,7 +17,10 @@ const ListItem = ({ item }) => {
           onChange={toggle}
         />
         <label>{name}</label>
-        <button className="destroy"></button>
+        <button
+          className="destroy"
+          onClick={destroy}
+        />
       </div>
     </li>
   );
