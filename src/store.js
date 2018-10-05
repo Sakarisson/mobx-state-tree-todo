@@ -21,6 +21,9 @@ const Store = types
     get pendingCount() {
       return self.activeTodos.length;
     },
+    get todoCount() {
+      return self.todos.length;
+    }
   }))
   .actions((self) => ({
     addTodo: (name) => self.todos.push(Todo.create({ name })),
