@@ -6,11 +6,11 @@ import { observer } from 'mobx-react';
 import Header from './Components/Header';
 import Main from './Components/Main';
 
-const App = ({ store, pendingCount }) => (
+const App = ({ store, todoCount }) => (
   <section className="todoapp">
     <Header store={store} />
     {
-      pendingCount > 0 ? (
+      todoCount > 0 ? (
         <Main store={store} />
       ) : null
     }
@@ -24,7 +24,7 @@ App.propTypes = {
 const wrapper = compose(
   observer,
   withProps(
-    ({ store }) => ({ pendingCount: store.pendingCount }),
+    ({ store }) => ({ todoCount: store.todoCount }),
   ),
 );
 

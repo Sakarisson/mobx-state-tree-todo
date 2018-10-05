@@ -9,4 +9,6 @@ import App from './App';
 
 const instance = Store.create();
 
+window.store = instance;
+
 ReactDOM.render(<App store={instance} />, document.getElementById('root'));
