@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import TodoList from './TodoList';
+import ToggleAll from './ToggleAll';
+import TodoList from '../TodoList';
 
 const Main = ({ store }) => (
   <section className="main">
+    <ToggleAll store={store} />
     <TodoList store={store} />
   </section>
 );

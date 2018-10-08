@@ -9,6 +9,7 @@ const Todo = types
   .actions((self) => ({
     setName: (newName) => { self.name = newName },
     toggle: () => { self.done = !self.done },
+    setDone: (done) => { self.done = done },
   }));
 
 const Store = types
@@ -43,6 +44,7 @@ const Store = types
       }
       self.todos.splice(index, 1);
     },
+    toggleAll: () => self.todos.forEach(todo => todo.setDone(true)),
   }));
 
 export default Store;

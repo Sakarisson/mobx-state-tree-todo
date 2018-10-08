@@ -13,7 +13,7 @@ const ListItem = ({ item, destroy }) => {
         <input
           type="checkbox"
           className="toggle"
-          defaultChecked={done}
+          checked={done}
           onChange={toggle}
         />
         <label>{name}</label>
