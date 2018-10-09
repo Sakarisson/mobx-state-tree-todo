@@ -8,20 +8,18 @@ const wrap = compose(
   withProps(
     ({ store }) => {
       const { pendingCount } = store;
-      console.log(pendingCount)
       const toggled = pendingCount === 0;
-      console.log(toggled);
       return { toggled };
     },
   ),
   withHandlers({
     toggle: ({ store, toggled }) => (event) => {
-      event.preventDefault();
+      const { toggleAll, activateAll } = store;
       if (toggled) {
-        return;
+        toggleAll();
+      } else {
+        activateAll();
       }
-      const { toggleAll } = store;
-      toggleAll();
     },
   }),
 )

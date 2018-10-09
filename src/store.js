@@ -44,7 +44,8 @@ const Store = types
       }
       self.todos.splice(index, 1);
     },
-    toggleAll: () => self.todos.forEach(todo => todo.setDone(true)),
+    activateAll: () => self.todos.forEach(todo => todo.setDone(true)),
+    toggleAll: () => self.todos.forEach(todo => todo.toggle()),
   }));
 
 export default Store;
