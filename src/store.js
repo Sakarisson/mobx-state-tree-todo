@@ -1,4 +1,4 @@
-import { types } from 'mobx-state-tree';
+import { types, onSnapshot } from 'mobx-state-tree';
 
 const Todo = types
   .model({
@@ -48,4 +48,16 @@ const Store = types
     toggleAll: () => self.todos.forEach(todo => todo.toggle()),
   }));
 
-export default Store;
+const initializeStore = () => {
+  let initialState = null;
+  if (localStorage.getItem('todo-store')) {
+    initialState = JSON.parse(localStorage.getItem('todo-store'));
+  }
+  const instance = Store.create(initialState);
+  onSnapshot(instance, (snapshot) => {
+    localStorage.setItem('todo-store', JSON.stringify(snapshot));
+  });
+  return instance;
+};
+
+export default initializeStore;
