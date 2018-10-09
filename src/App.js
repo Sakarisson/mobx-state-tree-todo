@@ -5,6 +5,7 @@ import { observer } from 'mobx-react';
 
 import Header from './Components/Header';
 import Main from './Components/Main';
+import Footer from './Components/Footer';
 
 const App = ({ store, todoCount }) => (
   <section className="todoapp">
@@ -14,6 +15,7 @@ const App = ({ store, todoCount }) => (
         <Main store={store} />
       ) : null
     }
+    <Footer store={store} />
   </section>
 );
 
