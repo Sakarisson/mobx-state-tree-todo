@@ -5,7 +5,7 @@ import ListItem from './ListItem';
 
 const TodoList = ({ store }) => (
   <ul className="todo-list">
-    {store.todos.map(todo => (
+    {store.filteredTodos.map(todo => (
       <ListItem
         item={todo}
         key={todo.id}

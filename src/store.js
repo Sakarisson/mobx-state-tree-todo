@@ -15,13 +15,28 @@ const Todo = types
 const Store = types
   .model('TodoStore', {
     todos: types.array(Todo),
+    filter: 'all',
   })
   .views((self) => ({
     get activeTodos() {
       return self.todos.filter(todo => !todo.done);
     },
+    get pendingTodos() {
+      return self.todos.filter(todo => !todo.done);
+    },
     get pendingCount() {
       return self.activeTodos.length;
+    },
+    get filteredTodos() {
+      const { filter } = self;
+      switch (filter) {
+        case 'active':
+          return self.pendingTodos;
+        case 'completed':
+          return self.activeTodos;
+        default:
+          return self.todos;
+      }
     },
     get todoCount() {
       return self.todos.length;
@@ -46,6 +61,7 @@ const Store = types
     },
     activateAll: () => self.todos.forEach(todo => todo.setDone(true)),
     toggleAll: () => self.todos.forEach(todo => todo.toggle()),
+    filterBy: (filter) => { self.filter = filter },
   }));
 
 const initializeStore = () => {
