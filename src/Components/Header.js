@@ -1,7 +1,7 @@
 import React from 'react';
 import { withStateHandlers } from 'recompose';
+import { ENTER_KEY_CODE } from '../constants';
 
-const ENTER_KEY_CODE = 13;
 const baseState = { text: '' };
 
 const wrap = withStateHandlers(
