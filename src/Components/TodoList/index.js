@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { observer } from 'mobx-react';
 
 import ListItem from './ListItem';
 
@@ -19,4 +20,6 @@ TodoList.propTypes = {
   store: PropTypes.object.isRequired,
 };
 
-export default TodoList;
+const wrap = observer;
+
+export default wrap(TodoList);
