@@ -46,7 +46,7 @@ const Footer = ({ store }) => (
 					/>
 				))}
 			</ul>
-		<button className="clear-completed">Clear completed</button>
+		<button className="clear-completed" onClick={store.clearCompleted}>Clear completed</button>
   </footer>
 );
 

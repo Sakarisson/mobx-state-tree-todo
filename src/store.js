@@ -43,8 +43,9 @@ const Store = types
     },
     get nextId() {
       const ids = self.todos.map(todo => todo.id);
-      const findMaxId = (current, max) => current >= max ? current + 1 : max;
-      return ids.reduce(findMaxId, 0);
+      const findMaxId = (max, current) => current >= max ? current + 1 : max;
+      const max = ids.reduce(findMaxId, 0);
+      return max;
     },
   }))
   .actions((self) => ({
@@ -62,6 +63,13 @@ const Store = types
     activateAll: () => self.todos.forEach(todo => todo.setDone(true)),
     toggleAll: () => self.todos.forEach(todo => todo.toggle()),
     filterBy: (filter) => { self.filter = filter },
+    clearCompleted: () => {
+      const completedIds = self.todos
+        .filter(todo => todo.done)
+        .map(todo => todo.id);
+
+      completedIds.forEach(id => self.removeTodo(id));
+    },
   }));
 
 const initializeStore = () => {
