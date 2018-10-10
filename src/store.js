@@ -64,9 +64,7 @@ const Store = types
     toggleAll: () => self.todos.forEach(todo => todo.toggle()),
     filterBy: (filter) => { self.filter = filter },
     clearCompleted: () => {
-      const completedIds = self.todos
-        .filter(todo => todo.done)
-        .map(todo => todo.id);
+      const completedIds = self.completedTodos.map(todo => todo.id);
 
       completedIds.forEach(id => self.removeTodo(id));
     },
