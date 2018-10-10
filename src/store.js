@@ -18,14 +18,14 @@ const Store = types
     filter: 'all',
   })
   .views((self) => ({
-    get activeTodos() {
-      return self.todos.filter(todo => !todo.done);
+    get completedTodos() {
+      return self.todos.filter(todo => todo.done);
     },
     get pendingTodos() {
       return self.todos.filter(todo => !todo.done);
     },
     get pendingCount() {
-      return self.activeTodos.length;
+      return self.pendingTodos.length;
     },
     get filteredTodos() {
       const { filter } = self;
@@ -33,7 +33,7 @@ const Store = types
         case 'active':
           return self.pendingTodos;
         case 'completed':
-          return self.activeTodos;
+          return self.completedTodos;
         default:
           return self.todos;
       }
