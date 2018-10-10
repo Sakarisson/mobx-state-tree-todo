@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { compose, withProps } from 'recompose';
 import { observer } from 'mobx-react';
@@ -12,10 +12,12 @@ const App = ({ store, todoCount }) => (
     <Header store={store} />
     {
       todoCount > 0 ? (
-        <Main store={store} />
+        <Fragment>
+          <Main store={store} />
+          <Footer store={store} />
+        </Fragment>
       ) : null
     }
-    <Footer store={store} />
   </section>
 );
 
