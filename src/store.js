@@ -50,6 +50,10 @@ const Store = types
   }))
   .actions((self) => ({
     addTodo: (name) => {
+      // Name can not be empty
+      if (name === '') {
+        return;
+      }
       const id = self.nextId;
       self.todos.push(Todo.create({ name, id }))
     },
