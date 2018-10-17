@@ -71,11 +71,18 @@ const Store = types
   }));
 
 const initializeStore = () => {
-  let initialState = null;
+  let instance = null;
   if (localStorage.getItem('todo-store')) {
-    initialState = JSON.parse(localStorage.getItem('todo-store'));
+    try {
+      const initialState = JSON.parse(localStorage.getItem('todo-store'));
+      instance = Store.create(initialState);
+    } catch (e) {
+      // There was something wrong with the stored data.
+      instance = Store.create();
+    }
+  } else {
+    instance = Store.create();
   }
-  const instance = Store.create(initialState);
   onSnapshot(instance, (snapshot) => {
     localStorage.setItem('todo-store', JSON.stringify(snapshot));
   });
