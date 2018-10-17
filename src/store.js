@@ -2,8 +2,8 @@ import { types, onSnapshot } from 'mobx-state-tree';
 
 const Todo = types
   .model({
-    name: '',
-    done: false,
+    name: types.string,
+    done: types.optional(types.boolean, false),
     id: types.number,
   })
   .actions((self) => ({
@@ -13,9 +13,9 @@ const Todo = types
   }));
 
 const Store = types
-  .model('TodoStore', {
+  .model({
     todos: types.array(Todo),
-    filter: 'all',
+    filter: types.optional(types.string, 'all'),
   })
   .views((self) => ({
     get completedTodos() {
