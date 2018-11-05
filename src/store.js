@@ -7,9 +7,15 @@ const Todo = types
     id: types.number,
   })
   .actions((self) => ({
-    setName: (newName) => { self.name = newName },
-    toggle: () => { self.done = !self.done },
-    setDone: (done) => { self.done = done },
+    setName(newName) {
+      self.name = newName;
+    },
+    toggle() {
+      self.done = !self.done;
+    },
+    setDone(done) {
+      self.done = done;
+    },
   }));
 
 const Store = types
@@ -49,7 +55,7 @@ const Store = types
     },
   }))
   .actions((self) => ({
-    addTodo: (name) => {
+    addTodo(name) {
       // Name can not be empty
       if (name === '') {
         return;
@@ -57,17 +63,23 @@ const Store = types
       const id = self.nextId;
       self.todos.push(Todo.create({ name, id }))
     },
-    removeTodo: (id) => {
+    removeTodo(id) {
       const index = self.todos.findIndex(todo => todo.id === id);
       if (index === -1) {
         return;
       }
       self.todos.splice(index, 1);
     },
-    activateAll: () => self.todos.forEach(todo => todo.setDone(true)),
-    toggleAll: () => self.todos.forEach(todo => todo.toggle()),
-    filterBy: (filter) => { self.filter = filter },
-    clearCompleted: () => {
+    activateAll() {
+      self.todos.forEach(todo => todo.setDone(true));
+    },
+    toggleAll() {
+      self.todos.forEach(todo => todo.toggle());
+    },
+    filterBy(filter) {
+      self.filter = filter;
+    },
+    clearCompleted() {
       const completedIds = self.completedTodos.map(todo => todo.id);
 
       completedIds.forEach(id => self.removeTodo(id));
